@@ -1,9 +1,16 @@
-<div class="container">
+<div class="topmenu">
     <h1>CSGI Challenge</h1>
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.retrievePosts()">Retrieve Posts</button>
-    <div>
-        <ul>
-            <li ng-repeat="post in $ctrl.state.postsList track by post.id">{{post.title}}</li>
-        </ul>
+</div>
+
+<div class="content">
+    <div class="element">
+        <form-component></form-component>
     </div>
+    <div class="element">
+        <posts-component></posts-component>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Footer</p>
 </div>

@@ -6,6 +6,7 @@ import './app.scss';
 class AppController {
     constructor($ngRedux) {
         this.$ngRedux = $ngRedux;
+        this.state = {};
     }
 
     $onInit() {
@@ -17,18 +18,18 @@ class AppController {
             this.state = state;
             this.actions = actions;
         });
+
+        this.actions.retrievePosts(response => {
+            console.log('response:', response);
+        });
+
+        console.log(this);
     }
 
     mapStateToTarget(state) {
         return {
             postsList: GetPostsListSelector(state)
         }
-    }
-
-    retrievePosts() {
-        this.actions.retrievePosts(response => {
-            console.log('response:', response);
-        });
     }
 
     $onDestroy() {
@@ -38,5 +39,8 @@ class AppController {
 
 export default {
     template: require('./app.template.html'),
-    controller: AppController
+    controller: AppController,
+    bindings: {
+        state: '<'
+    }
 }

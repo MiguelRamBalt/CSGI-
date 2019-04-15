@@ -7,6 +7,8 @@ export const RETRIEVE_POSTS = {
     FAILURE: 'RETRIEVE_POSTS_FAILURE'
 };
 
+export const RETRIEVE_POST_SAVE = 'RETRIEVE_POSTS_SAVE';
+
 const RETRIEVE_POSTS_EVENTS = [
     RETRIEVE_POSTS.BEGIN,
     RETRIEVE_POSTS.SUCCESS,
@@ -22,3 +24,12 @@ export const retrievePosts = () => {
     }
 };
 
+export const savePost = (name, author) => {
+    return {
+        type: RETRIEVE_POST_SAVE,
+        payload: {
+            title: name,
+            author: author
+        }
+    }
+};

@@ -1,6 +1,7 @@
 import Immutable from 'seamless-immutable';
 import {
-    RETRIEVE_POSTS
+    RETRIEVE_POSTS,
+    RETRIEVE_POST_SAVE
 } from '../actions/posts.actions';
 
 export const INITIAL_STATE = Immutable({
@@ -9,7 +10,7 @@ export const INITIAL_STATE = Immutable({
     isFetching: false
 });
 
-export default function postReducer(state = INITIAL_STATE, {type, payload = {}}) {
+export default function postReducer(state = INITIAL_STATE, { type, payload = {} }) {
     switch (type) {
         case RETRIEVE_POSTS.BEGIN:
             return state.set('isFetching', true);
@@ -20,6 +21,10 @@ export default function postReducer(state = INITIAL_STATE, {type, payload = {}})
         case RETRIEVE_POSTS.SUCCESS:
             return state
                 .set('postsList', payload)
+                .set('isFetching', false);
+        case RETRIEVE_POST_SAVE:
+            return state
+                .set('postsList', angular.extend(state.postsList, payload))
                 .set('isFetching', false)
         default:
             return state;
